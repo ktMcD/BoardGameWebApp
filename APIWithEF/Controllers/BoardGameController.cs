@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using APIWithEF.DAL;
 using APIWithEF.Models;
 using System.Net;
@@ -12,14 +12,14 @@ namespace APIWithEF.Controllers
         BoardGameRepository repo = new BoardGameRepository();
 
         [HttpPost("add")]
-        public BoardGame AddBoardGame(string title, string description, int year, int count)
+        public BoardGame AddBoardGame(BoardGame game)
         {
             BoardGame newBoardGame = new BoardGame
             {
-                Title = title,
-                Description = description,
-                YearPublished = year,
-                RecommendedPlayerCount = count
+                Title = game.Title,
+                Description = game.Description,
+                YearPublished = game.YearPublished,
+                RecommendedPlayerCount = game.RecommendedPlayerCount
             };
             return repo.AddBoardGame(newBoardGame);
         }
